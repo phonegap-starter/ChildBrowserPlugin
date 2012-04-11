@@ -20,7 +20,7 @@
     }
 
     function onLinkClick() {   
-        console.log('hello');
+        console.log(childbrowser);
         if(childbrowser != null) {
             childbrowser.onLocationChange = function(loc){ alert("In index.html new loc = " + loc); };
             childbrowser.onClose = function(){alert("In index.html child browser closed");};
