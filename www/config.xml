@@ -50,5 +50,6 @@
 
         <!-- This is the whitelist. For ChildBrowser to work correctly you need to enable domains here -->
         <access origin="google.com" subdomains="true" />
+        <access origin="phonegap.com" subdomains="true" />        
 
     </widget>
