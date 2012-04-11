@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <title></title>
+  
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no;" />
+	<meta charset="utf-8">
+
+    <link rel="stylesheet" href="style.css" />
+    <script type="text/javascript" charset="utf-8" src="cordova.js"></script>
+    <script type="text/javascript" src="childbrowser.js"></script>
+    <script type="text/javascript">
+    var childbrowser;
+
+    function onBodyLoad() {
+      document.addEventListener("deviceready", onDeviceReady, false);
+    
+    }
+
+    function onDeviceReady() {
+      childbrowser = ChildBrowser.install();
+      navigator.notification.alert("Cordova is working");
+    }
+
+    function onLinkClick() {   
+
+    if(childbrowser != null)
+    {
+        childbrowser.onLocationChange = function(loc){ alert("In index.html new loc = " + loc); };
+        childbrowser.onClose = function(){alert("In index.html child browser closed");};
+        childbrowser.onOpenExternal = function(){alert("In index.html onOpenExternal");};
+
+        window.plugins.childBrowser.showWebPage("http://google.com");
+      
+    }     
+    </script>
+  </head>
+  <body onload="onBodyLoad()">
+    <h1>Welcome to the ChildBrowser demo</h1>
+    <p><a href="#" onclick="onLinkClick()">Click here</a> to open a child browser window to Google</p>
+
+  </body>
+</html>
