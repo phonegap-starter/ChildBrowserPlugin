@@ -5,7 +5,7 @@
 	<meta charset="utf-8">
 
     <script type="text/javascript" charset="utf-8" src="phonegap.js"></script>
-    <script type="text/javascript" src="childbrowser.js"></script>
+    <script type="text/javascript" charset="utf-8" src="childbrowser.js"></script>
     <script type="text/javascript">
     var childbrowser;
 
@@ -20,16 +20,15 @@
     }
 
     function onLinkClick() {   
+        console.log('hello');
+        if(childbrowser != null) {
+            childbrowser.onLocationChange = function(loc){ alert("In index.html new loc = " + loc); };
+            childbrowser.onClose = function(){alert("In index.html child browser closed");};
+            childbrowser.onOpenExternal = function(){alert("In index.html onOpenExternal");};
 
-    if(childbrowser != null)
-    {
-        childbrowser.onLocationChange = function(loc){ alert("In index.html new loc = " + loc); };
-        childbrowser.onClose = function(){alert("In index.html child browser closed");};
-        childbrowser.onOpenExternal = function(){alert("In index.html onOpenExternal");};
-
-        window.plugins.childBrowser.showWebPage("http://google.com");
-      
-    }     
+            window.plugins.childBrowser.showWebPage("http://google.com");
+            
+        }     
     </script>
   </head>
   <body onload="onBodyLoad()">
