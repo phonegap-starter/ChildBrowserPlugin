@@ -15,20 +15,18 @@
     }
 
     function onDeviceReady() {
-      childbrowser = ChildBrowser.install();
       navigator.notification.alert("Cordova is working");
     }
 
-    function onLinkClick() {   
-        console.log(childbrowser);
-        if(childbrowser != null) {
-            childbrowser.onLocationChange = function(loc){ alert("In index.html new loc = " + loc); };
-            childbrowser.onClose = function(){alert("In index.html child browser closed");};
-            childbrowser.onOpenExternal = function(){alert("In index.html onOpenExternal");};
+    function onLinkClick() {
+        window.plugins.childBrowser.onLocationChange = function(loc){ alert("In index.html new loc = " + loc); };
+        window.plugins.childBrowser.onClose = function(){alert("In index.html child browser closed");};
+        window.plugins.childBrowser.onOpenExternal = function(){alert("In index.html onOpenExternal");};        
 
-            window.plugins.childBrowser.showWebPage("http://google.com");
-            
-        }
+        window.plugins.childBrowser.showWebPage('http://www.google.com',
+                                        { showLocationBar: true });
+        console.log(window.plugins.childBrowser);
+        
     }
     </script>
   </head>
